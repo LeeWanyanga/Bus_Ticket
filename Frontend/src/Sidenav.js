@@ -1,38 +1,100 @@
 import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import MuiDrawer from '@mui/material/Drawer';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import Home from './pages/Home';
+import Ticket from './pages/Ticket';
+import Destination from './pages/Destination';
+import Contact from './pages/Contact';
+import Profile from './pages/Profile';
 import { IoMdHome } from "react-icons/io";
 import { IoTicketSharp } from "react-icons/io5";
-import { MdSubscriptions } from "react-icons/md";
+import { IoLocationSharp } from "react-icons/io5";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { IoCall } from "react-icons/io5";
-import Contact from './pages/About';
-import { styled, useTheme } from '@mui/material/styles'; 
-import MenuIcon from '@mui/icons-material/Menu';
-import Home from './pages/Home';
-import About from './pages/About';
 
 const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
 
 const StyledListItemIcon = styled(ListItemIcon)(({ theme }) => ({
   minWidth: 36,
@@ -42,9 +104,11 @@ const StyledListItemText = styled(ListItemText)(({ theme }) => ({
   paddingLeft: 12,
 }));
 
-export default function Sidenav() {
+
+
+export default function MiniDrawer() {
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const [menudata, setMenudata] = useState("Home");
 
   const handleDrawerOpen = () => {
@@ -73,7 +137,7 @@ export default function Sidenav() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-            <h3 style={{ color: 'red', fontSize: '1.5rem', textAlign: 'center' }}> Bus Ticket 101</h3>
+            <h3 style={{ fontSize: '1.5rem', textAlign: 'center' }}> Easy Going 101</h3>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -93,42 +157,52 @@ export default function Sidenav() {
             <StyledListItemText primary="Home" />
           </ListItem>
          
-          <ListItem disablePadding button  onClick={() => setMenudata("Book Your Tickets")}>
+          <ListItem enablePadding button  onClick={() => setMenudata("Ticket")}>
             <StyledListItemIcon>
             <IoTicketSharp />
             </StyledListItemIcon>
             <StyledListItemText primary="Book Your Tickets" />
           </ListItem>
 
-          <ListItem disablePadding  onClick={() => setMenudata("Destinations")}>
+          <ListItem enablePadding button  onClick={() => setMenudata("Destination")}>
             <StyledListItemIcon>
-              <MdSubscriptions />
+            <IoLocationSharp />
             </StyledListItemIcon>
             <StyledListItemText primary="Destinations" />
           </ListItem>
 
-          <ListItem disablePadding  onClick={() => setMenudata("Contact Us")}>
+          <Divider/>
+
+          <ListItem enablePadding button  onClick={() => setMenudata("Contact")}>
             <StyledListItemIcon>
             <IoCall />
             </StyledListItemIcon>
             <StyledListItemText primary="Contact Us" />
           </ListItem>
 
-          <ListItem disablePadding  onClick={() => setMenudata("Profile")}>
+          <ListItem enablePadding button onClick={() => setMenudata("Profile")}>
             <StyledListItemIcon>
             <IoPersonCircleSharp />
             </StyledListItemIcon>
-            <StyledListItemText primary="profile" />
+            <StyledListItemText primary="Your Profile" />
           </ListItem>
 
         </List>
-        <Divider />
+        
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {menudata === "Home" && <Home />}
+        {menudata === "Ticket" && <Ticket />}
+        {menudata === "Destination" && <Destination />}
         {menudata === "Contact" && <Contact />}
+        {menudata === "Profile" && <Profile />}
       </Box>
     </Box>
   );
 }
+
+
+
+
+
