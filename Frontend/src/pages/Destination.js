@@ -2,17 +2,17 @@ import React from "react";
 import Sidenav from "../Sidenav";
 import { Carousel } from 'react-bootstrap';
 import { Divider } from "@mui/material";
-import destination1m from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination1.1.jpg'
-import destination2m from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination1.2.jpg'
-import destination3m from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination1.3.jpg'
-import destination1k from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination2.1.jpg'
-import destination2k from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination2.2.jpg'
-import destination3k from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/destination2.3.jpg'
+import destination1m from '../Images/destination1.1.jpg'
+import destination2m from '../Images/destination1.2.jpg'
+import destination3m from '../Images/destination1.3.jpg'
+import destination1k from '../Images/destination2.1.jpg'
+import destination2k from '../Images/destination2.2.jpg'
+import destination3k from '../Images/destination2.3.jpg'
+  
 
 
 const Destination = () => {
     return ( 
-        
             <div style={{ fontFamily: 'Arial', padding: '20px' }}>
               <h2 style={{ fontSize: '2rem', textAlign: 'center', marginLeft: '50px' }}> Destinations</h2>
               <Carousel>

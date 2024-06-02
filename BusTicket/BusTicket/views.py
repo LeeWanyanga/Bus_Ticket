@@ -4,6 +4,8 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from BusTicket.serializers import TicketSerializer
 from BusTicket.models import Ticket
+import mysql.connector
+
 @csrf_exempt
 
 def busticketApi(request,id=0):

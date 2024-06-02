@@ -1,7 +1,28 @@
 import {useEffect, useState } from "react";
 import axios from 'axios';
+
+
 function Ticket()
 {
+
+const mysql = require('mysql');
+
+const connection =
+mysql.createConnection({
+    host: 'localhost' ,
+    user: 'root' ,
+    password: '',
+    database: 'busticket'
+});
+
+connection.connect((err) => {
+    if (err) throw err;
+    console.log ('Connected!');
+    connection.query('SELECT* FROM your_table', (err, results) =>{
+        if (err) throw err;
+        console.log(results);
+    });
+});
 
   const [id, setId] = useState('');
   const [name, setName] = useState("");

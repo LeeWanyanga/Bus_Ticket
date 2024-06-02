@@ -2,11 +2,9 @@ import React from 'react';
 import Sidenav from '../Sidenav';
 import { Carousel } from 'react-bootstrap';
 import Typography from '@mui/material/Typography';
-import buswelcome from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/buswelcome.jpg'
-import buswelcome2 from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/buswelcome2.jpg'
-import buswelcome3 from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/buswelcome3.jpg'
-import buswelcome4 from '/Users/ADMIN/Desktop/bus ticket/Busticketsystem/Frontend/src/pages/Images/buswelcome4.jpg'
-
+import buswelcome2 from '../Images/buswelcome2.jpg'
+import buswelcome3 from '../Images/buswelcome3.jpg'
+import buswelcome4 from '../Images/buswelcome4.jpg'
 
 const WelcomeHome = () => {
   return (

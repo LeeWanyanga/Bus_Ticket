@@ -52,7 +52,7 @@ const Ticket = () => {
             <div className="container">
               <h2>Book Your Ticket Here</h2>
               
-              <form action="your_contact_endpoint" method="POST">
+              <form action="./Components/ticket.jsx" method="POST">
 
                 <input
                   type="text"
@@ -74,39 +74,7 @@ const Ticket = () => {
                   placeholder="Your age"
                   required
                 />
-              
-                {/* <input type="radio" id="male" name="gender" value="male">
-    
-                <input type="radio" id="female" name="gender" value="female"> */}
-        
-                <p>Gender:</p>
-                <label
-                htmlFor="male">Male</label>
-                <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  value="male"
-                  required
-                />
-              
-              <label
-                htmlFor="male">Female</label>
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="female"
-                  required
-                />
-                
-                <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                  required
-                />
-
+                                
                 <button type="submit">Purchase Ticket</button>
               </form>
             </div>
